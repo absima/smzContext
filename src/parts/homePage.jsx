@@ -51,7 +51,7 @@ export default function HomePage() {
                 An e-commerce showcase with React, JWT auth, and a full
                 cart → checkout → orders flow.
               </p> */}
-              <div classname="chipsButtons">
+              <div className="chipsButtons">
               <div className="homeChips">
                 <span className="homeChip">Fast browsing</span>
                 <span className="homeChip">Protected orders</span>
