@@ -7,7 +7,7 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { ProjContext } from '../contexter';
 
-export default function SearchPart(props) {
+export default function SearchPart() {
   const { products, loading, error } = useContext(ProjContext);
 
   const [searchParams] = useSearchParams();
@@ -18,11 +18,12 @@ export default function SearchPart(props) {
       .toString()
       .trim()
       .toLowerCase()
-      // common category formatting differences:
-      // "skin-care" / "skin care" / "skin_care" -> "skincare"
       .replace(/[\s_-]+/g, '');
 
-  const filter = normalize(filterRaw);
+  const filterTerms = (filterRaw || '')
+    .split(/\s+/)
+    .map(normalize)
+    .filter(Boolean);
 
   return (
     <div className="container maindiv">
@@ -34,25 +35,25 @@ export default function SearchPart(props) {
         <Row className="product-grid">
           {(products ?? [])
             .filter((product) => {
-              if (!filter) return true;
+              if (filterTerms.length === 0) return true;
 
               const title = normalize(product?.title);
               const brand = normalize(product?.brand);
               const category = normalize(product?.category);
-
               const tags = Array.isArray(product?.tags)
                 ? normalize(product.tags.join(' '))
                 : '';
 
-              return (
-                title.includes(filter) ||
-                brand.includes(filter) ||
-                category.includes(filter) ||
-                tags.includes(filter)
+              return filterTerms.some(
+                (term) =>
+                  title.includes(term) ||
+                  brand.includes(term) ||
+                  category.includes(term) ||
+                  tags.includes(term)
               );
             })
             .map((item) => (
-              <Product key={item._id} product={item} />
+              <Product key={item._id || item.id} product={item} />
             ))}
         </Row>
       )}

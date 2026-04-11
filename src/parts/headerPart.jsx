@@ -6,6 +6,56 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { ProjContext } from '../contexter';
 
+const CATEGORY_GROUPS = [
+  {
+    value: 'tech',
+    label: 'Tech',
+    terms: ['laptops', 'smartphones', 'tablets', 'mobile-accessories'],
+  },
+  {
+    value: 'women',
+    label: 'Women',
+    terms: [
+      'womens-dresses',
+      'womens-shoes',
+      'womens-watches',
+      'womens-bags',
+      'womens-jewellery',
+      'tops',
+    ],
+  },
+  {
+    value: 'men',
+    label: 'Men',
+    terms: ['mens-shirts', 'mens-shoes', 'mens-watches'],
+  },
+  {
+    value: 'home',
+    label: 'Home',
+    terms: ['furniture', 'home-decoration', 'kitchen-accessories'],
+  },
+  {
+    value: 'beauty',
+    label: 'Beauty',
+    terms: ['beauty', 'skin-care', 'fragrances', 'sunglasses'],
+  },
+  {
+    value: 'groceries',
+    label: 'Groceries',
+    terms: ['groceries'],
+  },
+  {
+    value: 'sports',
+    label: 'Sports',
+    terms: ['sports-accessories'],
+  },
+  {
+    value: 'vehicles',
+    label: 'Vehicles',
+    terms: ['motorcycle', 'vehicle'],
+  },
+];
+
 export default function HeaderPart() {
   const { customer, setCustomer, loggedin, setLoggedin, cartItems } =
     useContext(ProjContext);
@@ -49,9 +99,12 @@ export default function HeaderPart() {
       return;
     }
 
+    const selectedGroup = CATEGORY_GROUPS.find((group) => group.value === value);
+    const searchValue = selectedGroup ? selectedGroup.terms.join(' ') : value;
+
     setFilter('');
-    setSearchParams({ filter: value });
-    navigate(`/search?filter=${encodeURIComponent(value)}`);
+    setSearchParams({ filter: searchValue });
+    navigate(`/search?filter=${encodeURIComponent(searchValue)}`);
   };
 
   const handleFilter = (e) => {
@@ -79,7 +132,6 @@ export default function HeaderPart() {
     <header>
       <Container>
         <Row className="headerRow">
-
           <Col xs={12} className="headerTop">
             <Link className="brand" to="/">
               simazon
@@ -150,12 +202,11 @@ export default function HeaderPart() {
                 <option value="" disabled>
                   select
                 </option>
-                <option value="smartphones">Smartphones</option>
-                <option value="laptops">Laptops</option>
-                <option value="fragrances">Fragrances</option>
-                <option value="skincare">Skin Care</option>
-                <option value="groceries">Groceries</option>
-                <option value="home-decoration">Decos</option>
+                {CATEGORY_GROUPS.map((group) => (
+                  <option key={group.value} value={group.value}>
+                    {group.label}
+                  </option>
+                ))}
               </select>
 
               <Form className="header-form" onSubmit={handleSubmit}>

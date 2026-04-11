@@ -6,6 +6,7 @@ import { useCart } from './cart/cart';
 const api_url = import.meta.env.VITE_API_URL;
 
 const CtxtProvider = (props) => {
+  // console.log('api_url:', api_url);
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
   const [cartItems, setCartItems] = useState([0]);
