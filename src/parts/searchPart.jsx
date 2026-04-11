@@ -44,13 +44,21 @@ export default function SearchPart() {
                 ? normalize(product.tags.join(' '))
                 : '';
 
-              return filterTerms.some(
-                (term) =>
+              // return filterTerms.some(
+              //   (term) =>
+              //     title.includes(term) ||
+              //     brand.includes(term) ||
+              //     category.includes(term) ||
+              //     tags.includes(term)
+              // );
+              return filterTerms.some((term) => {
+                return (
                   title.includes(term) ||
                   brand.includes(term) ||
-                  category.includes(term) ||
+                  category === term ||   // ✅ exact match
                   tags.includes(term)
-              );
+                );
+              });
             })
             .map((item) => (
               <Product key={item._id || item.id} product={item} />
