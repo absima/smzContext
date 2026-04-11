@@ -5,7 +5,7 @@ import { Col } from 'react-bootstrap';
 
 export default function Product(props) {
   const { product } = props;
-
+  const catClass = `category-${(product.category || '').toLowerCase()}`;
   return (
 //      <Col
 //   key={product._id}
@@ -15,11 +15,16 @@ export default function Product(props) {
       <div className="product-card">
         <Link to={`/product/${product._id}`}>
           <div className="product-media">
-            <img
+            {/* <img
               className="product-thumb"
               src={product.thumbnail}
               alt={product.title}
-            />
+            /> */}
+          <img
+            className={`product-thumb ${catClass}`}
+            src={product.thumbnail}
+            alt={product.title}
+          />
           </div>
         </Link>
 

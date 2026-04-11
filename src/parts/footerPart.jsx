@@ -10,7 +10,7 @@ import {
 import { Link } from 'react-router-dom';
 
 const launchYear = 2022;
-const currentYear = new Date().getFullYear();
+// const currentYear = new Date().getFullYear();
 
 const FooterPart = () => {
   return (

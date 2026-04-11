@@ -69,7 +69,7 @@ export default function ProductPart() {
             </button>
           </Link>
           <Row>
-            <Col xs={12} md={6}>
+            {/* <Col xs={12} md={6}>
               <Carousel activeIndex={index} onSelect={handleSelect}>
                 {product.images.map((image, idx) => (
                   <Carousel.Item key={idx}>
@@ -82,7 +82,23 @@ export default function ProductPart() {
                   </Carousel.Item>
                 ))}
               </Carousel>
-            </Col>
+            </Col> */}
+
+            <Col xs={12} md={6}>
+              <Carousel activeIndex={index} onSelect={handleSelect}>
+                {product.images.map((image, idx) => (
+                  <Carousel.Item key={idx}>
+                    <Col key={'product_' + String(idx)} className="imageCol">
+                      <img
+                        src={image}
+                        alt={`${product.title} ${idx + 1}`}
+                        className={`product-detail-image category-${product.category}`}
+                      />
+                    </Col>
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </Col>            
             {/* <Col md={3}> */}
               {/* jeighihge */}
             <Col md={3} className="product-info">

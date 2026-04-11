@@ -479,7 +479,7 @@ h2 {
 }
 
 
-.product-media {
+/* .product-media {
   aspect-ratio: 4 / 3;
   width: 100%;
   background: var(--surface-2);
@@ -494,7 +494,41 @@ h2 {
   height: 100%;
   object-fit: contain;
   display: block;
+} */
+ 
+.product-media {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 4px;
 }
+
+.product-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transform: scale(1);
+}
+
+.product-thumb.category-motorcycle {
+  transform: scale(1.5);
+}
+.product-thumb.category-vehicle {
+  transform: scale(1.8);
+}
+.product-thumb.category-mobile-accessories,
+.product-thumb.category-sunglasses,
+.product-thumb.category-womens-jewellery,
+.product-thumb.category-womens-watches,
+.product-thumb.category-mens-watches {
+  transform: scale(1.1);
+}
+
 
 /* Content */
 .product-body {
@@ -590,7 +624,7 @@ h2 {
   margin: 0 0 6px 0;
 }
 
-.imageCol {
+/* .imageCol {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -607,7 +641,49 @@ h2 {
   max-height: 420px;
   width: auto;
   max-width: 100%;
+} */
+
+.imageCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--surface-2);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+
+  overflow: hidden;
+  min-height: 360px;
+  padding: 8px;
 }
+
+.product-detail-image {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  display: block;
+  transform: scale(1);
+}
+
+.product-detail-image.category-motorcycle {
+  transform: scale(1.35);
+}
+
+.product-detail-image.category-vehicle {
+  transform: scale(1.55);
+}
+
+.product-detail-image.category-mobile-accessories,
+.product-detail-image.category-sunglasses,
+.product-detail-image.category-womens-jewellery,
+.product-detail-image.category-womens-watches,
+.product-detail-image.category-mens-watches {
+  transform: scale(1.1);
+}
+
+
+
 
 .product-buybox {
   border: 1px solid var(--border);
@@ -642,6 +718,19 @@ h2 {
   height: 30rem;
   width: 100%;
   object-fit: cover;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1) grayscale(1) brightness(0.2);
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-indicators .active {
+  background-color: rgba(0, 0, 0, 1);
 }
 
 /*  Footer */
